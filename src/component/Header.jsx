@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import { useState } from "react";
 
 export default function Header() {
@@ -11,10 +12,9 @@ export default function Header() {
         <div className="topbar">
           <div className="topbar-container">
             {/* LOGO */}
-            <div className="topbar-logo">
-              <img src="/logo-Duane.jpg" alt="logo" />
-            </div>
-
+            <Link to="/" className="topbar-logo">
+  <img src="/logo-Duane.jpg" alt="logo" />
+</Link>
             {/* CONTACT */}
             <div className="topbar-contact">
               <span>
@@ -99,11 +99,17 @@ export default function Header() {
               <Link to="/Buyhome" onClick={() => setOpen(false)}>
                 BUY A HOME
               </Link>
-              <Link to="/" onClick={() => setOpen(false)}>
-                SELL A HOME
+              <Link to="/sellhome" onClick={() => setOpen(false)}>
+                  BUY LAND
               </Link>
-              <Link to="/" onClick={() => setOpen(false)}>
-               CONTACR US
+              <Link to="/buyland" onClick={() => setOpen(false)}>
+                    SELL A HOME
+              </Link>
+              <Link to="/sellbuy" onClick={() => setOpen(false)}>
+                    SELL BUY 
+              </Link>
+               <Link to="/contact" onClick={() => setOpen(false)}>
+                   CONTACT US
               </Link>
             
             </nav>

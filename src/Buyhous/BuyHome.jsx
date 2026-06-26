@@ -1,5 +1,3 @@
-import Header from '../component/Header'
-import Footer from '../component/Footer';
 
 const properties = [
   {
@@ -119,7 +117,7 @@ const properties = [
 export default function BuyHome() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Header />
+    
 
       <main className="flex-1">
         <section className="px-0 pb-0">
@@ -154,7 +152,6 @@ export default function BuyHome() {
         </section>
       </main>
 
-      <Footer />
     </div>
   )
 }
