@@ -72,22 +72,26 @@ export default function Header() {
             </div>
           </div>
         </div>
-        <div className="menu-bar">
-          <nav>
-            <Link to="/BuyHome">
-              BUY A HOME<span>+</span>
-            </Link>
-            <Link to="/">
-              SELL A HOME <span>+</span>
-            </Link>
-            <Link to="/">
-              BUY LAND <span>+</span>
-            </Link>
-            <Link to="/">
-              SELL BUY <span>+</span>
-            </Link>
-          </nav>
-        </div>
+      
+      <div className="menu-bar">
+  <nav>
+    <Link to="/">
+      BUY A HOME <span>+</span>
+    </Link>
+
+    <Link to="/sellhome">
+      SELL A HOME <span>+</span>
+    </Link>
+
+    <Link to="/buyland">
+      BUY LAND <span>+</span>
+    </Link>
+
+    <Link to="/sellbuy">
+      SELL BUY <span>+</span>
+    </Link>
+  </nav>
+</div>
         {/* ===== MOBILE MENU ===== */}
         {open && (
           <div className="mobile-menu">

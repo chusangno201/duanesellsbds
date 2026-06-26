@@ -1,5 +1,5 @@
 import Header from '../component/Header'
-import Footer from '../component/Footer'
+import Footer from '../component/Footer';
 
 const properties = [
   {

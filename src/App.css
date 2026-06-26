@@ -924,56 +924,136 @@
   margin: 15px auto 0;
   opacity: 0.6;
 }
-@media (max-width: 768px) {
-  .stats {
-    flex-direction: row-reverse;
-    gap: 50px;
-  }
-
-  .stat-item h3 {
-    font-size: 36px;
-  }
-}
+/* STATS WRAPPER */
+.stats,
 .stats-section {
   background: #000;
   padding: 80px 20px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: stretch;
   flex-wrap: wrap;
+  gap: 35px;
   text-align: center;
 }
 
+/* ITEM */
+.stat-item,
 .stat-box {
   flex: 1 1 200px;
-  margin: 20px;
+  max-width: 260px;
+  margin: 0;
+  padding: 25px 15px;
   transition: transform 0.3s ease;
 }
 
+.stat-item:hover,
 .stat-box:hover {
   transform: translateY(-5px);
 }
 
+/* NUMBER */
+.stat-item h3,
 .counter {
   font-size: 48px;
-  font-weight: 700;
-  color: #d4af37; /* vàng luxury */
+  font-weight: 800;
+  color: #d4af37;
   margin-bottom: 10px;
   letter-spacing: 2px;
 }
 
+/* TEXT */
+.stat-item p,
 .stat-box p {
   color: #aaa;
   font-size: 14px;
   letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.5;
+  margin: 0;
 }
 
+/* GOLD LINE */
+.stat-item::after,
 .stat-box p::after {
   content: "";
   display: block;
   width: 40px;
   height: 2px;
   background: #d4af37;
-  margin: 10px auto 0;
+  margin: 12px auto 0;
+  opacity: 0.7;
+}
+
+/* TABLET */
+@media (max-width: 992px) {
+  .stats,
+  .stats-section {
+    padding: 65px 18px;
+    gap: 25px;
+  }
+
+  .stat-item,
+  .stat-box {
+    flex: 1 1 calc(50% - 25px);
+    max-width: none;
+  }
+
+  .stat-item h3,
+  .counter {
+    font-size: 40px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .stats,
+  .stats-section {
+    padding: 50px 12px;
+    gap: 14px;
+    justify-content: center;
+  }
+
+  .stat-item,
+  .stat-box {
+    flex: 1 1 calc(50% - 14px);
+    max-width: none;
+    padding: 22px 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 14px;
+  }
+
+  .stat-item h3,
+  .counter {
+    font-size: 30px;
+    margin-bottom: 8px;
+  }
+
+  .stat-item p,
+  .stat-box p {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  .stat-item::after,
+  .stat-box p::after {
+    width: 30px;
+    margin-top: 10px;
+  }
+}
+
+/* MOBILE NHỎ */
+@media (max-width: 380px) {
+  .stat-item,
+  .stat-box {
+    flex: 1 1 100%;
+  }
+
+  .stat-item h3,
+  .counter {
+    font-size: 34px;
+  }
 }
 .ai-button {
   position: fixed;

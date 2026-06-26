@@ -1,0 +1,270 @@
+.buyland-page {
+  width: 100%;
+  background: #0b0b0b;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* HERO */
+.buyland-hero {
+  position: relative;
+  min-height: 92vh;
+  background-image: url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=80");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+}
+
+.buyland-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.88),
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.2)
+  );
+}
+
+.buyland-content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+}
+
+.buyland-label {
+  display: inline-block;
+  color: #c9a45c;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.buyland-content h1 {
+  font-size: 72px;
+  line-height: 1.05;
+  font-weight: 800;
+  margin: 0 0 24px;
+  letter-spacing: -2px;
+}
+
+.buyland-content p {
+  font-size: 19px;
+  line-height: 1.7;
+  color: #dddddd;
+  max-width: 620px;
+  margin-bottom: 36px;
+}
+
+.buyland-buttons {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-outline,
+.luxury-btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 54px;
+  padding: 0 30px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.3s ease;
+}
+
+.btn-primary {
+  background: #c9a45c;
+  color: #111;
+  border: 1px solid #c9a45c;
+}
+
+.btn-primary:hover {
+  background: #fff;
+  border-color: #fff;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.btn-outline:hover {
+  background: #fff;
+  color: #111;
+}
+
+/* INFO CARDS */
+.buyland-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #222;
+  padding: 1px;
+}
+
+.buyland-info-card {
+  background: #111;
+  padding: 55px 40px;
+  min-height: 230px;
+  transition: 0.3s ease;
+}
+
+.buyland-info-card:hover {
+  background: #171717;
+  transform: translateY(-4px);
+}
+
+.buyland-info-card h3 {
+  font-size: 25px;
+  margin-bottom: 18px;
+  color: #c9a45c;
+}
+
+.buyland-info-card p {
+  color: #cfcfcf;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* LUXURY SECTION */
+.buyland-luxury {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 720px;
+  background: #0d0d0d;
+}
+
+.luxury-left {
+  padding: 110px 9%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.luxury-left span {
+  color: #c9a45c;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.luxury-left h2 {
+  font-size: 48px;
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+
+.luxury-left p {
+  color: #d0d0d0;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+
+.luxury-left ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 36px;
+}
+
+.luxury-left li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 15px;
+  color: #f1f1f1;
+  font-size: 16px;
+}
+
+.luxury-left li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #c9a45c;
+  font-weight: 900;
+}
+
+.luxury-btn {
+  width: fit-content;
+  background: #c9a45c;
+  color: #111;
+  border: 1px solid #c9a45c;
+}
+
+.luxury-btn:hover {
+  background: #fff;
+  border-color: #fff;
+}
+
+.luxury-right {
+  height: 100%;
+}
+
+.luxury-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* MOBILE */
+@media (max-width: 992px) {
+  .buyland-content h1 {
+    font-size: 52px;
+  }
+
+  .buyland-info {
+    grid-template-columns: 1fr;
+  }
+
+  .buyland-luxury {
+    grid-template-columns: 1fr;
+  }
+
+  .luxury-right {
+    height: 420px;
+  }
+}
+
+@media (max-width: 576px) {
+  .buyland-hero {
+    min-height: 86vh;
+    padding: 0 6%;
+  }
+
+  .buyland-content h1 {
+    font-size: 40px;
+  }
+
+  .buyland-content p {
+    font-size: 16px;
+  }
+
+  .btn-primary,
+  .btn-outline,
+  .luxury-btn {
+    width: 100%;
+    height: 52px;
+    padding: 0 18px;
+    font-size: 12px;
+  }
+
+  .luxury-left {
+    padding: 70px 6%;
+  }
+
+  .luxury-left h2 {
+    font-size: 34px;
+  }
+}

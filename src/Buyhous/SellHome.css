@@ -1,0 +1,321 @@
+.sellhome-page {
+  width: 100%;
+  background: #090909;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* HERO */
+.sellhome-hero {
+  position: relative;
+  min-height: 92vh;
+  background-image: url("https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1800&q=80");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+}
+
+.sellhome-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.58),
+    rgba(0, 0, 0, 0.2)
+  );
+}
+
+.sellhome-content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+}
+
+.sellhome-label {
+  display: inline-block;
+  color: #c9a45c;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.sellhome-content h1 {
+  font-size: 78px;
+  line-height: 1.02;
+  font-weight: 900;
+  margin: 0 0 25px;
+  letter-spacing: -2px;
+}
+
+.sellhome-content p {
+  max-width: 650px;
+  color: #e1e1e1;
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 36px;
+}
+
+.sellhome-buttons {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.sellhome-btn-primary,
+.sellhome-btn-outline,
+.sellhome-gold-btn {
+  height: 55px;
+  padding: 0 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  transition: 0.3s ease;
+}
+
+.sellhome-btn-primary {
+  background: #c9a45c;
+  color: #111;
+  border: 1px solid #c9a45c;
+}
+
+.sellhome-btn-primary:hover {
+  background: #fff;
+  border-color: #fff;
+}
+
+.sellhome-btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.sellhome-btn-outline:hover {
+  background: #fff;
+  color: #111;
+}
+
+/* CARDS */
+.sellhome-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: #222;
+  gap: 1px;
+  padding: 1px;
+}
+
+.sellhome-stats div {
+  background: #101010;
+  padding: 55px 40px;
+  min-height: 260px;
+  transition: 0.3s ease;
+}
+
+.sellhome-stats div:hover {
+  background: #171717;
+  transform: translateY(-5px);
+}
+
+.sellhome-stats h2 {
+  color: #c9a45c;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.sellhome-stats h3 {
+  font-size: 27px;
+  margin-bottom: 16px;
+}
+
+.sellhome-stats p {
+  color: #cfcfcf;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* MAIN SECTION */
+.sellhome-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 760px;
+  background: #0b0b0b;
+}
+
+.sellhome-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sellhome-text {
+  padding: 110px 9%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sellhome-text > span {
+  color: #c9a45c;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 14px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.sellhome-text h2 {
+  font-size: 48px;
+  line-height: 1.15;
+  margin: 0 0 25px;
+}
+
+.sellhome-text p {
+  color: #d2d2d2;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+
+.sellhome-text ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 36px;
+}
+
+.sellhome-text li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 15px;
+  color: #f1f1f1;
+  font-size: 16px;
+}
+
+.sellhome-text li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #c9a45c;
+  font-weight: 900;
+}
+
+.sellhome-gold-btn {
+  width: fit-content;
+  background: #c9a45c;
+  color: #111;
+  border: 1px solid #c9a45c;
+}
+
+.sellhome-gold-btn:hover {
+  background: #fff;
+  border-color: #fff;
+}
+
+/* CTA */
+.sellhome-cta {
+  padding: 80px 8%;
+  background: #c9a45c;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.sellhome-cta span {
+  font-size: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.sellhome-cta h2 {
+  font-size: 42px;
+  margin: 15px 0;
+}
+
+.sellhome-cta p {
+  font-size: 17px;
+  margin: 0;
+}
+
+.sellhome-cta a {
+  height: 55px;
+  padding: 0 32px;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* MOBILE */
+@media (max-width: 992px) {
+  .sellhome-content h1 {
+    font-size: 54px;
+  }
+
+  .sellhome-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .sellhome-section {
+    grid-template-columns: 1fr;
+  }
+
+  .sellhome-image {
+    height: 420px;
+  }
+
+  .sellhome-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 576px) {
+  .sellhome-hero {
+    min-height: 86vh;
+    padding: 0 6%;
+  }
+
+  .sellhome-content h1 {
+    font-size: 42px;
+  }
+
+  .sellhome-content p {
+    font-size: 16px;
+  }
+
+  .sellhome-btn-primary,
+  .sellhome-btn-outline,
+  .sellhome-gold-btn,
+  .sellhome-cta a {
+    width: 100%;
+    height: 52px;
+    padding: 0 18px;
+    font-size: 12px;
+  }
+
+  .sellhome-text {
+    padding: 70px 6%;
+  }
+
+  .sellhome-text h2,
+  .sellhome-cta h2 {
+    font-size: 34px;
+  }
+}
