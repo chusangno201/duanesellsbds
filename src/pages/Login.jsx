@@ -1,224 +1,155 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
+import "../LoginAdmin.css";
 
-export default function Admin() {
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState("");
-  const [address, setAddress] = useState("");
-  const [imageFile, setImageFile] = useState(null);
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isSignUp, setIsSignUp] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [listings, setListings] = useState([]);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
 
-  const inputStyle = {
-    padding: "10px",
-    borderRadius: "8px",
-    border: "1px solid #ccc",
-    width: "100%",
-  };
+  const navigate = useNavigate();
 
-  // =============================
-  // FETCH LISTINGS
-  // =============================
-  const fetchListings = async () => {
-    const { data, error } = await supabase
-      .from("listings")
-      .select("*")
-      .order("id", { ascending: false });
-
-    if (!error) {
-      setListings(data);
-    }
-  };
-
-  useEffect(() => {
-    fetchListings();
-  }, []);
-
-  // =============================
-  const addListing = async () => {
-    if (!title || !price || !address || !imageFile) {
-      alert("Vui lòng nhập đầy đủ thông tin + chọn hình");
-      return;
-    }
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErrorMsg("");
+    setSuccessMsg("");
     setLoading(true);
 
-    const fileExt = imageFile.name.split(".").pop();
-    const fileName = `${Date.now()}.${fileExt}`;
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
 
-    // Upload ảnh
-    const { error: uploadError } = await supabase.storage
-      .from("listing-images")
-      .upload(fileName, imageFile);
-
-    if (uploadError) {
-      alert(uploadError.message);
+    if (!trimmedEmail || !trimmedPassword) {
+      setErrorMsg("Vui lòng điền đầy đủ email và mật khẩu.");
       setLoading(false);
       return;
     }
 
-    const { data } = supabase.storage
-      .from("listing-images")
-      .getPublicUrl(fileName);
+    try {
+      if (isSignUp) {
+        // ĐĂNG KÝ ADMIN TÀI KHOẢN MẪU
+        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+          email: trimmedEmail,
+          password: trimmedPassword,
+        });
 
-    const publicUrl = data.publicUrl;
+        if (signUpError) throw signUpError;
 
-    // Insert DB
-    const { error: insertError } = await supabase
-      .from("listings")
-      .insert([
-        {
-          title,
-          price: Number(price),
-          address,
-          image: publicUrl,
-          image_name: fileName,
-        },
-      ]);
+        const newUser = signUpData.user;
+        if (newUser) {
+          // Thêm quyền admin vào bảng profiles
+          const { error: profileError } = await supabase
+            .from("profiles")
+            .insert([{ id: newUser.id, role: "admin" }]);
 
-    if (insertError) {
-      alert(insertError.message);
+          if (profileError) {
+            console.error("Lỗi khi cập nhật profile role:", profileError);
+            setErrorMsg("Đăng ký thành công nhưng không thể gán quyền Admin: " + profileError.message);
+          } else {
+            setSuccessMsg("Đăng ký tài khoản Admin thành công! Vui lòng đăng nhập.");
+            setIsSignUp(false);
+          }
+        } else {
+          setSuccessMsg("Vui lòng kiểm tra email để xác nhận đăng ký tài khoản!");
+        }
+      } else {
+        // ĐĂNG NHẬP
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: trimmedEmail,
+          password: trimmedPassword,
+        });
+
+        if (error) throw error;
+
+        // Đăng nhập thành công -> check role
+        const { data: profile, error: profileError } = await supabase
+          .from("profiles")
+          .select("role")
+          .eq("id", data.user.id)
+          .single();
+
+        if (profileError || !profile || profile.role !== "admin") {
+          // Nếu không phải admin, đăng xuất ngay lập tức
+          await supabase.auth.signOut();
+          setErrorMsg("Tài khoản của bạn không có quyền truy cập Admin.");
+        } else {
+          navigate("/admin");
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      setErrorMsg(err.message || "Đã xảy ra lỗi không xác định.");
+    } finally {
       setLoading(false);
-      return;
     }
-
-    setTitle("");
-    setPrice("");
-    setAddress("");
-    setImageFile(null);
-    setLoading(false);
-
-    fetchListings(); // reload
-  };
-
-  // =============================
-  // DELETE LISTING
-  // =============================
-  const deleteListing = async (id, image_name) => {
-    await supabase.from("listings").delete().eq("id", id);
-
-    if (image_name) {
-      await supabase.storage
-        .from("listing-images")
-        .remove([image_name]);
-    }
-
-    fetchListings();
   };
 
   return (
-    <div style={{ maxWidth: "900px", margin: "100px auto" }}>
-      <h2>Admin - Upload Listing</h2>
+    <div className="login-admin-container">
+      <div className="login-card">
+        <div className="login-logo-section">
+          <img src="/logo-Duane.jpg" alt="Duane Sells Logo" className="login-logo-img" />
+          <h2 className="login-title">PORTAL ADMIN</h2>
+          <p className="login-subtitle">
+            {isSignUp ? "Tạo tài khoản quản trị thử nghiệm" : "Đăng nhập hệ thống quản lý bất động sản"}
+          </p>
+        </div>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "15px",
-          marginBottom: "25px",
-        }}
-      >
-        <input
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          style={inputStyle}
-        />
+        <form onSubmit={handleSubmit} className="login-form">
+          {errorMsg && <div className="login-alert error">{errorMsg}</div>}
+          {successMsg && <div className="login-alert success">{successMsg}</div>}
 
-        <input
-          type="number"
-          placeholder="Price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          style={inputStyle}
-        />
+          <div className="login-input-group">
+            <label>Email Address</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="admin@example.com"
+              required
+            />
+          </div>
 
-        <input
-          placeholder="Address"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          style={inputStyle}
-        />
+          <div className="login-input-group">
+            <label>Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              required
+            />
+          </div>
 
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setImageFile(e.target.files[0])}
-        />
-      </div>
+          <button type="submit" disabled={loading} className="login-btn">
+            {loading ? (
+              <span className="spinner-loader"></span>
+            ) : isSignUp ? (
+              "Đăng ký tài khoản Admin"
+            ) : (
+              "Đăng Nhập"
+            )}
+          </button>
+        </form>
 
-      <button
-        onClick={addListing}
-        disabled={loading}
-        style={{
-          padding: "12px 25px",
-          background: "#111",
-          color: "white",
-          borderRadius: "8px",
-          border: "none",
-          cursor: "pointer",
-        }}
-      >
-        {loading ? "Uploading..." : "Add Listing"}
-      </button>
-
-      {/* LIST */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "15px",
-          marginTop: "40px",
-        }}
-      >
-        {listings.map((item) => (
-          <div
-            key={item.id}
-            style={{
-              display: "flex",
-              gap: "20px",
-              alignItems: "center",
-              padding: "20px",
-              background: "#f3f4f6",
-              borderRadius: "12px",
+        <div className="login-toggle-section">
+          <button
+            type="button"
+            className="login-toggle-btn"
+            onClick={() => {
+              setIsSignUp(!isSignUp);
+              setErrorMsg("");
+              setSuccessMsg("");
             }}
           >
-            <img
-              src={item.image}
-              alt={item.title}
-              style={{
-                width: "120px",
-                height: "90px",
-                objectFit: "cover",
-                borderRadius: "8px",
-              }}
-            />
-
-            <div style={{ flex: 1 }}>
-              <h4 style={{ margin: 0 }}>{item.title}</h4>
-              <p style={{ margin: "5px 0" }}>
-                ${item.price?.toLocaleString()}
-              </p>
-              <small>{item.address}</small>
-            </div>
-
-            <button
-              onClick={() =>
-                deleteListing(item.id, item.image_name)
-              }
-              style={{
-                background: "#ef4444",
-                color: "white",
-                border: "none",
-                padding: "8px 14px",
-                borderRadius: "6px",
-                cursor: "pointer",
-              }}
-            >
-              Delete
-            </button>
-          </div>
-        ))}
+            {isSignUp
+              ? "Đã có tài khoản? Đăng nhập ngay"
+              : "Chưa có tài khoản? Tạo tài khoản Admin mẫu"}
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -13,6 +13,10 @@ import SellBuy from "./Buyhous/SellBuy";
 
 import Mechelle from "./pages/duane-sells/Mechelle";
 import DuaneSells from "./pages/duane-sells/Duane";
+import Login from "./pages/Login";
+import Admin from "./pages/Admin";
+import PropertyDetail from "./pages/PropertyDetail";
+import ProtectedRoute from "./component/ProtectedRoute";
 
 import "remixicon/fonts/remixicon.css";
 import "slick-carousel/slick/slick.css";
@@ -39,15 +43,24 @@ function App() {
         <Route path="/mechelle" element={<Mechelle />} />
 
         <Route path="/buyhome" element={<BuyHome />} />
+        <Route path="/buyhome/:id" element={<PropertyDetail />} />
         <Route path="/sellhome" element={<SellHome />} />
         <Route path="/buyland" element={<BuyLand />} />
         <Route path="/sellbuy" element={<SellBuy />} />
 
         {/* Route viết hoa nếu menu cũ đang dùng */}
         <Route path="/BuyHome" element={<BuyHome />} />
+        <Route path="/BuyHome/:id" element={<PropertyDetail />} />
         <Route path="/SellHome" element={<SellHome />} />
         <Route path="/BuyLand" element={<BuyLand />} />
         <Route path="/SellBuy" element={<SellBuy />} />
+        
+        <Route path="/login" element={<Login />} />
+      </Route>
+
+      {/* Protected Admin Route */}
+      <Route element={<ProtectedRoute />}>
+        <Route path="/admin" element={<Admin />} />
       </Route>
     </Routes>
   );

@@ -1,10 +1,10 @@
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = "https://imdmetieuwsvckcnmlhg.supabase.co";
-const supabaseAnonKey = "sb_publishable_zTXaIQzDRar4_RKjDbaTNg_zBmW3uXp";
+const supabaseUrl = "https://sceimrxswzobcrvyevmx.supabase.co";
+const supabaseAnonKey = "sb_publishable_HgiMzuYfx2XSsQ8rnhM_DQ_iO1mx5Bz";
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-    auth: {
+  auth: {
     persistSession: true,
     autoRefreshToken: true,
     detectSessionInUrl: true,

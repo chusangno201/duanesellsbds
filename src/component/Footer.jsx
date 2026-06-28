@@ -48,8 +48,11 @@ export default function Footer() {
                 <Link to="#" className="hover:text-white">
                   Management
                 </Link>
-                <Link to="#" className="hover:text-white col-span-2">
+                <Link to="/contact" className="hover:text-white col-span-2">
                   Contact Us
+                </Link>
+                <Link to="/login" className="hover:text-gray-200 col-span-2 text-xs text-gray-400 mt-2 block">
+                  Admin Portal
                 </Link>
               </div>
             </div>

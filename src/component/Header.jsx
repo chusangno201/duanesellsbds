@@ -75,7 +75,7 @@ export default function Header() {
       
       <div className="menu-bar">
   <nav>
-    <Link to="/">
+    <Link to="/buyhome">
       BUY A HOME <span>+</span>
     </Link>
 
@@ -96,17 +96,17 @@ export default function Header() {
         {open && (
           <div className="mobile-menu">
             <nav>
-              <Link to="/Buyhome" onClick={() => setOpen(false)}>
+              <Link to="/buyhome" onClick={() => setOpen(false)}>
                 BUY A HOME
               </Link>
               <Link to="/sellhome" onClick={() => setOpen(false)}>
-                  BUY LAND
+                SELL A HOME
               </Link>
               <Link to="/buyland" onClick={() => setOpen(false)}>
-                    SELL A HOME
+                BUY LAND
               </Link>
               <Link to="/sellbuy" onClick={() => setOpen(false)}>
-                    SELL BUY 
+                SELL BUY 
               </Link>
                <Link to="/contact" onClick={() => setOpen(false)}>
                    CONTACT US

@@ -4,7 +4,6 @@ import Feature from "./Feature";
 // import Homepage from "./Homepage/Homepage";
 
 import Near from "./Near";
-import Banner from "./Banner";
 import Stats from "./Stats";
 import Footer from "./Footer";
 
@@ -57,7 +56,6 @@ export default function Home() {
             <h1>
               FIND YOUR <br /> LUXURY DREAM HOME
             </h1>
-            <button className="cta">Browse Properties</button>
           </div>
 
           {/* SEARCH CỐ ĐỊNH */}
@@ -68,9 +66,6 @@ export default function Home() {
       <Stats />
       {/* <Homepage /> */}
       <Near />
-
-      <Banner />
-      {/* <Admin /> */}
     </>
   );
 }
