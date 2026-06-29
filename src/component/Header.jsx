@@ -16,17 +16,17 @@ export default function Header() {
   <img src="/logo-Duane.jpg" alt="logo" />
 </Link>
             {/* CONTACT */}
-            <div className="topbar-contact">
-              <span>
-                <i className="ri-phone-fill"></i>
-                (770)-314-0104
-              </span>
+           <div className="topbar-contact">
+  <a href="tel:+17703140104">
+    <i className="ri-phone-fill"></i>
+    (770)-314-0104
+  </a>
 
-              <span>
-                <i className="ri-mail-fill"></i>
-                info@houseduane.com
-              </span>
-            </div>
+  <a href="mailto:info@houseduane.com">
+    <i className="ri-mail-fill"></i>
+    info@houseduane.com
+  </a>
+</div>
 
             {/* SOCIAL */}
             <div className="topbar-social">
